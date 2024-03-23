@@ -45,16 +45,16 @@ async def main() -> None:
             "homeserver, user, and password to create credential file."
         )
         homeserver = "https://matrix.example.org"
-        homeserver = input(f"Enter your homeserver URL: [{homeserver}] ")
+        homeserver = input(f"Enter your homeserver URL: [{homeserver}] ") or homeserver
 
         if not (homeserver.startswith("https://") or homeserver.startswith("http://")):
             homeserver = "https://" + homeserver
 
         user_id = "@user:example.org"
-        user_id = input(f"Enter your full user ID: [{user_id}] ")
+        user_id = input(f"Enter your full user ID: [{user_id}] ") or user_id
 
         device_name = "matrix-nio"
-        device_name = input(f"Choose a name for this device: [{device_name}] ")
+        device_name = input(f"Choose a name for this device: [{device_name}] ") or device_name
 
         client = AsyncClient(homeserver, user_id)
         pw = getpass.getpass()
@@ -88,7 +88,7 @@ async def main() -> None:
 
         # Now we can send messages as the user
         room_id = "!myfavouriteroomid:example.org"
-        room_id = input(f"Enter room id for test message: [{room_id}] ")
+        room_id = input(f"Enter room id for test message: [{room_id}] ") or room_id
 
         await client.room_send(
             room_id,
